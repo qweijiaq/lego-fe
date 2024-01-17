@@ -1,5 +1,6 @@
 import { VNode } from "vue";
 import { TextComponentProps } from "./defaultProps";
+
 export interface PropToForm {
   component: string;
   subComponent?: string;

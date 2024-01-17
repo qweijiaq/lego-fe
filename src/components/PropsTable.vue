@@ -30,6 +30,7 @@ import { computed, PropType, VNode } from "vue";
 import { reduce } from "lodash";
 import { mapPropsToForms } from "../propsMap";
 import { TextComponentProps } from "../defaultProps";
+import RenderVnode from "./RenderVnode";
 
 interface FormProps {
   component: string;
