@@ -4,23 +4,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from "vue";
+<script lang="ts" setup>
+import { computed } from "vue";
 import { useStore } from "vuex";
 import { GlobalDataProps } from "../store/index";
 import TemplateList from "../components/TemplateList.vue";
-export default defineComponent({
-  components: {
-    TemplateList,
-  },
-  setup() {
-    const store = useStore<GlobalDataProps>();
-    const testData = computed(() => store.state.templates.data);
-    return {
-      testData,
-    };
-  },
-});
+
+const store = useStore<GlobalDataProps>();
+const testData = computed(() => store.state.templates.data);
 </script>
 
 <style>

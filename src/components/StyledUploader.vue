@@ -1,10 +1,14 @@
 <template>
   <uploader
     class="styled-uploader"
-    action="http://local.test:7001/api/upload/" 
+    action="http://local.test:7001/api/upload/"
     :showUploadList="false"
     :beforeUpload="commonUploadCheck"
-    @success="(data) => {handleUploadSuccess(data.resp, data.file.raw)}"
+    @success="
+      (data) => {
+        handleUploadSuccess(data.resp, data.file.raw);
+      }
+    "
   >
     <div class="uploader-container">
       <FileImageOutlined />
@@ -12,41 +16,29 @@
     </div>
     <template #loading>
       <div class="uploader-container">
-        <LoadingOutlined spin/>
+        <LoadingOutlined spin />
         <h4>上传中</h4>
       </div>
     </template>
     <template #uploaded>
       <div class="uploader-container">
-        <FileImageOutlined/>
+        <FileImageOutlined />
         <h4>上传图片</h4>
       </div>
     </template>
   </uploader>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { FileImageOutlined, LoadingOutlined } from '@ant-design/icons-vue'
-import { commonUploadCheck } from '../helper'
-import Uploader from './Uploader.vue'
-export default defineComponent({
-  components: {
-    Uploader,
-    FileImageOutlined,
-    LoadingOutlined,
-  },
-  emits: ['success'],
-  setup(props, { emit }) {
-    const handleUploadSuccess = (resp: any, file: File) => {
-      emit('success', { resp, file })
-    }
-    return {
-      commonUploadCheck,
-      handleUploadSuccess
-    }
-  }
-})
+<script lang="ts" setup>
+import { FileImageOutlined, LoadingOutlined } from "@ant-design/icons-vue";
+import { commonUploadCheck } from "../helper";
+import Uploader from "./Uploader.vue";
+
+const emits = defineEmits(["success"]);
+
+const handleUploadSuccess = (resp: any, file: File) => {
+  emits("success", { resp, file });
+};
 </script>
 
 <style lang="scss">
@@ -71,5 +63,5 @@ export default defineComponent({
     margin-bottom: 0;
     margin-left: 10px;
   }
-} 
+}
 </style>

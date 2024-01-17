@@ -2,6 +2,8 @@ import { Module } from "vuex";
 import { v4 as uuidv4 } from "uuid";
 import { GlobalDataProps } from "./index";
 import { TextComponentProps, ImageComponentProps } from "../defaultProps";
+import LText from "@/components/LText.vue";
+import { Component } from "vue";
 
 export interface EditorProps {
   // 供中间编辑器渲染的数组
@@ -16,12 +18,12 @@ export interface ComponentData {
   // id，uuid v4 生成
   id: string;
   // 业务组件库名称 l-text，l-image 等等
-  name: "l-text" | "l-image";
+  component: Component;
 }
 export const testComponents: ComponentData[] = [
   {
     id: uuidv4(),
-    name: "l-text",
+    component: LText,
     props: {
       text: "hello",
       fontSize: "20px",
@@ -33,7 +35,7 @@ export const testComponents: ComponentData[] = [
   },
   {
     id: uuidv4(),
-    name: "l-text",
+    component: LText,
     props: {
       text: "hello2",
       fontSize: "10px",
@@ -45,7 +47,7 @@ export const testComponents: ComponentData[] = [
   },
   {
     id: uuidv4(),
-    name: "l-text",
+    component: LText,
     props: {
       text: "hello3",
       fontSize: "15px",
